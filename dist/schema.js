@@ -2,7 +2,9 @@
 
 var _interopRequireDefault = require("@babel/runtime-corejs3/helpers/interopRequireDefault");
 
-var _indexOf = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/index-of"));
+var _indexOf = _interopRequireDefault(
+  require("@babel/runtime-corejs3/core-js-stable/instance/index-of")
+);
 
 var pick = function pick(attrs, allowed) {
   if (!attrs) {
@@ -14,7 +16,10 @@ var pick = function pick(attrs, allowed) {
   for (var key in attrs) {
     var value = attrs[key];
 
-    if ((0, _indexOf.default)(allowed).call(allowed, key) > -1 && value !== null) {
+    if (
+      (0, _indexOf.default)(allowed).call(allowed, key) > -1 &&
+      value !== null
+    ) {
       h[key] = value;
     }
   }
@@ -26,30 +31,33 @@ module.exports = {
   nodes: {
     horizontal_rule: function horizontal_rule(node) {
       return {
-        singleTag: 'hr'
+        singleTag: "hr"
       };
     },
     blockquote: function blockquote(node) {
       return {
-        tag: 'blockquote'
+        tag: "blockquote"
       };
     },
     bullet_list: function bullet_list(node) {
       return {
-        tag: 'ul'
+        tag: "ul"
       };
     },
     code_block: function code_block(node) {
       return {
-        tag: ['pre', {
-          tag: 'code',
-          attrs: node.attrs
-        }]
+        tag: [
+          "pre",
+          {
+            tag: "code",
+            attrs: node.attrs
+          }
+        ]
       };
     },
     hard_break: function hard_break(node) {
       return {
-        singleTag: 'br'
+        singleTag: "br"
       };
     },
     heading: function heading(node) {
@@ -59,73 +67,82 @@ module.exports = {
     },
     image: function image(node) {
       return {
-        singleTag: [{
-          tag: 'img',
-          attrs: pick(node.attrs, ['src', 'alt', 'title'])
-        }]
+        singleTag: [
+          {
+            tag: "img",
+            attrs: pick(node.attrs, ["src", "alt", "title"])
+          }
+        ]
       };
     },
     list_item: function list_item(node) {
       return {
-        tag: 'li'
+        tag: "li"
       };
     },
     ordered_list: function ordered_list(node) {
       return {
-        tag: 'ol'
+        tag: "ol"
       };
     },
     paragraph: function paragraph(node) {
       return {
-        tag: 'p'
+        tag: "p"
       };
     }
   },
   marks: {
     bold: function bold() {
       return {
-        tag: 'b'
+        tag: "b"
       };
     },
     strike: function strike() {
       return {
-        tag: 'strike'
+        tag: "strike"
       };
     },
     underline: function underline() {
       return {
-        tag: 'u'
+        tag: "u"
       };
     },
     strong: function strong() {
       return {
-        tag: 'strong'
+        tag: "strong"
       };
     },
     code: function code() {
       return {
-        tag: 'code'
+        tag: "code"
       };
     },
     italic: function italic() {
       return {
-        tag: 'i'
+        tag: "i"
       };
     },
     link: function link(node) {
+      console.log("Storyblok richtexteditor link");
+      console.log(node.attrs);
+
       return {
-        tag: [{
-          tag: 'a',
-          attrs: node.attrs
-        }]
+        tag: [
+          {
+            tag: "a",
+            attrs: node.attrs
+          }
+        ]
       };
     },
     styled: function styled(node) {
       return {
-        tag: [{
-          tag: 'span',
-          attrs: node.attrs
-        }]
+        tag: [
+          {
+            tag: "span",
+            attrs: node.attrs
+          }
+        ]
       };
     }
   }
